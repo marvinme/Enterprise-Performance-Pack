@@ -1,0 +1,521 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Resource Utilization",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P94FD7B9A892D6283"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 102,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 0,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "9.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P94FD7B9A892D6283"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Throughput / JDK8",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P94FD7B9A892D6283"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "interval": "",
+          "legendFormat": "Throughput / JDKPerf",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Throughput - Higher is Better",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P94FD7B9A892D6283"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P94FD7B9A892D6283"
+          },
+          "exemplar": true,
+          "expr": "(sum(rate(http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval])) - sum(rate(http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]))) / sum(rate(http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])) * 100",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Memory Usage Improvement",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 13,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Startup Times",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P94FD7B9A892D6283"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "9.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P94FD7B9A892D6283"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate( http_server_requests_seconds_sum{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Request Average Duration / JDK8",
+          "range": true,
+          "refId": "Native Image G1"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P94FD7B9A892D6283"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate( http_server_requests_seconds_sum{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "interval": "",
+          "legendFormat": "Request Average Duration / JDKPerf",
+          "range": true,
+          "refId": "openjdk"
+        }
+      ],
+      "title": "Request Average Duration - Lower is Better",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P94FD7B9A892D6283"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 8
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P94FD7B9A892D6283"
+          },
+          "exemplar": true,
+          "expr": "(sum(rate( http_server_requests_seconds_sum{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]))-sum(rate( http_server_requests_seconds_sum{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval]))) / sum (rate( http_server_requests_seconds_sum{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])) * 100",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Response Time Improvement",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 15,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Application Throughput",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P94FD7B9A892D6283"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "reqps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.2.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P94FD7B9A892D6283"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "interval": "",
+          "legendFormat": "OracleJDK8 (req / s)",
+          "range": true,
+          "refId": "openjdk"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P94FD7B9A892D6283"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "OracleJDKPerf (req / s)",
+          "range": true,
+          "refId": "Native Image EE PGO"
+        }
+      ],
+      "title": "Throughput - Higher is Better ( GraalVM vs jdkperf vs jdk8 )",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "JDK8vsPerformancePack",
+  "uid": "KhygMXiVk",
+  "version": 12,
+  "weekStart": ""
+}

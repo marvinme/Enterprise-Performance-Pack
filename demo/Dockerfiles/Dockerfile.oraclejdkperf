@@ -1,0 +1,6 @@
+FROM oracle/jdkperf:8
+
+EXPOSE 8080
+
+COPY target/prime-0.0.1-SNAPSHOT.jar prime-0.0.1-SNAPSHOT.jar
+CMD ["java","-jar","prime-0.0.1-SNAPSHOT.jar"]

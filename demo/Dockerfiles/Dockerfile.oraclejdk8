@@ -1,0 +1,7 @@
+FROM container-registry.oracle.com/java/serverjre:latest
+# FROM container-registry.oracle.com/java/serverjre:8-oraclelinux7
+
+EXPOSE 8080
+
+COPY target/prime-0.0.1-SNAPSHOT.jar prime-0.0.1-SNAPSHOT.jar
+CMD ["java","-jar","prime-0.0.1-SNAPSHOT.jar"]

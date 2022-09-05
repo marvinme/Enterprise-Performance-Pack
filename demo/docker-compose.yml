@@ -1,0 +1,110 @@
+version: '2.4'
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+services:
+
+  # Apps
+  primes-oraclejdk8:
+    image: localhost/primes:oraclejdk8
+    restart: always
+    mem_limit: 2048m
+    memswap_limit: 2048m
+    cpu_count: 4
+    cpu_percent: 100
+    cpus: 4
+    container_name: primes-oraclejdk8
+    depends_on:
+      - "prom"
+    ports:
+      - "8083:8080"
+  primes-oraclejdkperf:
+    image: localhost/primes:oraclejdkperf
+    restart: always
+    mem_limit: 2048m
+    memswap_limit: 2048m
+    cpu_count: 4
+    cpu_percent: 100
+    cpus: 4
+    container_name: primes-oraclejdkperf
+    depends_on:
+      - "prom"
+    ports:
+      - "8084:8080"
+  primes-graalee:
+    image: localhost/primes:graalee.0.1
+    restart: always
+    mem_limit: 2048m
+    memswap_limit: 2048m
+    cpu_count: 4
+    cpu_percent: 100
+    cpus: 4
+    container_name: primes-graalee
+    depends_on:
+      - "prom"
+    ports:
+      - "8086:8080"
+
+  # Prometheus
+  prom:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+  # Grafana
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    depends_on:
+     - prom
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    user: '104'
+  ## CAdvisor
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.42.0
+    container_name: cadvisor
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
+    restart: unless-stopped
+    ports:
+      - 9099:8080
+
+
+  # Stress Test Infra
+  stress-oraclejdk:
+    image: ricoli/hey
+    command: -z 60m http://primes-oraclejdk8:8080/primes?upperBound=99999
+    depends_on:
+      - "primes-oraclejdk8"
+  stress-oraclejdkperf:
+    image: ricoli/hey
+    command: -z 60m http://primes-oraclejdkperf:8080/primes?upperBound=99999
+    depends_on:
+      - "primes-oraclejdkperf"
+  stress-graalee:
+    image: ricoli/hey
+    command: -z 60m http://primes-graalee:8080/primes?upperBound=99999
+    depends_on:
+      - "primes-graalee"
