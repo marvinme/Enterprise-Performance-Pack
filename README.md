@@ -84,8 +84,20 @@ git clone https://github.com/junsuzu/Enterprise-Performance-Pack.git
 ### 2. Run build.sh to build the project and containers
 ```sh
 cd Enterprise-Performance-Pack/demo
+chmod +x ./*
 ./build.sh
 ```
+
+During building process, enter user name and password of your oracle account for access to oracle container registry
+
+```
+[INFO] ------------------------------------------------------------------------
+Building Java - DONE
+Building docker containers...
+Username (******@oracle.com): ******@oracle.com
+Password:
+```
+
 When build script executed successfully, there are docker images created as below: 
 
 ```
@@ -100,6 +112,10 @@ container-registry.oracle.com/java/serverjre   latest              ecd4aec3df76 
 ```
 
 
-## Step3: Build two Docker containers based on Java Performance Pack and Legacy Java8
+## Step3: Run demo
 Use Oracle Linux based Dockerfile(Offered as Open Source at Oracle) to create JDK images of Java Performance Pack.
-### 1. Clone the Docker Images from Oracle
+### 1. Start containers
+```sh
+cd Enterprise-Performance-Pack/demo
+docker-compose up
+```
