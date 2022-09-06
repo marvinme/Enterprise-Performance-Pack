@@ -1,4 +1,4 @@
-version: '2.4'
+version: '2.5'
 
 volumes:
   prometheus_data:
@@ -33,20 +33,7 @@ services:
       - "prom"
     ports:
       - "8084:8080"
-  primes-graalee:
-    image: localhost/primes:graalee.0.1
-    restart: always
-    mem_limit: 2048m
-    memswap_limit: 2048m
-    cpu_count: 4
-    cpu_percent: 100
-    cpus: 4
-    container_name: primes-graalee
-    depends_on:
-      - "prom"
-    ports:
-      - "8086:8080"
-
+  
   # Prometheus
   prom:
     image: prom/prometheus
@@ -63,13 +50,11 @@ services:
       - "9090:9090"
   # Grafana
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana-oss
     container_name: grafana
     depends_on:
      - prom
     volumes:
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
-      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
       - grafana_data:/var/lib/grafana
     ports:
       - "3000:3000"
@@ -91,20 +76,14 @@ services:
     ports:
       - 9099:8080
 
-
   # Stress Test Infra
   stress-oraclejdk:
     image: ricoli/hey
-    command: -z 60m http://primes-oraclejdk8:8080/primes?upperBound=99999
+    command: -z 60m http://primes-oraclejdk8:8080/primes?upperBound=9999
     depends_on:
       - "primes-oraclejdk8"
   stress-oraclejdkperf:
     image: ricoli/hey
-    command: -z 60m http://primes-oraclejdkperf:8080/primes?upperBound=99999
+    command: -z 60m http://primes-oraclejdkperf:8080/primes?upperBound=9999
     depends_on:
       - "primes-oraclejdkperf"
-  stress-graalee:
-    image: ricoli/hey
-    command: -z 60m http://primes-graalee:8080/primes?upperBound=99999
-    depends_on:
-      - "primes-graalee"

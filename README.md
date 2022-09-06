@@ -5,7 +5,8 @@ Performance comparison demo between Legacy Java8 and Java Enterprise Performance
 * This demo compares throughput and latency by running sample benchmark on top of two containers, based on Java Enterprise Performance Pack and Legacy Java8 respectively
 
 ## Prerequsites
-* Oracle Java8 and Maven
+* Oracle Java 1.8.0_341
+* Apache Maven 3.6.3
 * Docker and docker-compose
 ## Demo Environment
 * 8 core, 64 memories  
@@ -44,12 +45,12 @@ Change the java binary package name and java version to correspond with download
 
 >```sh
 ># ENV JAVA_PKG=server-jre-8u333-linux-x64.tar.gz \
->ENV JAVA_PKG=jdk-8u345-perf-linux-x64.tar.gz
+>ENV JAVA_PKG=jdk-8u345-perf-linux-x64.tar.gz \
 >```
 
 >```sh
 ># ENV JAVA_VERSION=1.8.0_333 \
->ENV JAVA_VERSION=1.8.0_345-perf
+>ENV JAVA_VERSION=1.8.0_345-perf \
 >```
 
 Also comment out the checksum part to avoid conflict while creating the docker image
@@ -82,8 +83,20 @@ git clone https://github.com/junsuzu/Enterprise-Performance-Pack.git
 
 ### 2. Run build.sh to build the project and containers
 ```sh
-cd Enterprise-Performance-Pack-Demo
+cd Enterprise-Performance-Pack/demo
 ./build.sh
+```
+When build script executed successfully, there are docker images created as below: 
+
+```
+[opc@eppdemo demo]$ docker images
+REPOSITORY                                     TAG                 IMAGE ID            CREATED              SIZE
+localhost/primes                               oraclejdkperf       1cda52d0f598        About a minute ago   336MB
+localhost/primes                               oraclejdk8          7d9b022c5b09        About a minute ago   336MB
+oracle/jdkperf                                 8                   9b4780818b52        2 hours ago          316MB
+<none>                                         <none>              2f2e3d10cdff        2 hours ago          363MB
+oraclelinux                                    7-slim              6a34bf539669        11 days ago          133MB
+container-registry.oracle.com/java/serverjre   latest              ecd4aec3df76        6 weeks ago          316MB
 ```
 
 
