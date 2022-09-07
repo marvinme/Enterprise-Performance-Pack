@@ -39,9 +39,11 @@ Download the binaries available via MyOracleSupport.
 
 Put the binary file under the directory of "docker-images/OracleJava/8".
 ![Download Picture01](images/pic01.JPG)
-### 3. Edit Dockerfile under "docker-images/OracleJava/8" to correspond to Java Enterprise Performance Pack
+### 3. Edit Dockerfile to correspond to Java Enterprise Performance Pack
 ```
 cd docker-images/OracleJava/8
+```
+```
 vi Dockerfile
 ```
 
