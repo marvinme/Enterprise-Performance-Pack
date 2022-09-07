@@ -15,7 +15,7 @@ Performance comparison demo between legacy JDK8 and Java Enterprise Performance 
 ## Contents
 * **[Step1: Create docker image with Java Enterprise Performance Pack](#Step1-Create-docker-image-with-Java-Enterprise-Performance-Pack)**
 
-* **[Step2: Build project](#Step2-Build-project)**
+* **[Step2: Build sample project](#Step2-Build-sample-project)**
    
 * **[Step3: Run the demo](#Step3-Run-the-demo)**
 
@@ -93,7 +93,7 @@ oracle/jdkperf      8               c97866da0082        4 weeks ago         316M
 git clone https://github.com/junsuzu/Enterprise-Performance-Pack.git
 ```
 
-### 2. Run build.sh to build the sample project and docker images
+### 2. Run script to build the sample project and docker images
 
 ```
 cd Enterprise-Performance-Pack/demo
