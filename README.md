@@ -84,13 +84,16 @@ docker build --file Dockerfile --tag oracle/jdkperf:8 .
 Confirm the docker image has been successfully created.
 
 ```
-$ docker images
-REPOSITORY          TAG             IMAGE ID            CREATED             SIZE
-oracle/jdkperf      8               c97866da0082        4 weeks ago         316MB
+[opc@eppdemo 8]$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+oracle/jdkperf      8                   50c69cee9af6        4 seconds ago       316MB
+<none>              <none>              f9b0fbbfa2b2        25 seconds ago      363MB
+oraclelinux         7-slim              6a34bf539669        13 days ago         133MB
 ```
 
 ## Step2: Build sample project
 ### 1. Clone the repository
+Move to a new directory to download the sample project.
 ```sh
 git clone https://github.com/junsuzu/Enterprise-Performance-Pack.git
 ```
