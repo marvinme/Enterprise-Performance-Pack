@@ -143,10 +143,10 @@ Navigate to: http://your-instance-ip:3000/login to access the Grafana dashboard 
 Click on the Dashboards icon on the left of the Grafana interface and choose EPPDemo on the right panel:
 ![Download Picture05](images/pic05.JPG)
 
-You will find throuput and latency comparison between Performance Pack and legacy JDK8 as below.
+You will find throughput and latency comparison between Performance Pack and legacy JDK8 as below.
 
 ![Download Picture03](images/pic03.JPG)
 
-If you change the parameter of upperbound from 9999 to 99999 in docker-compose.yml, to make the load much heavier, you will find the difference increase significently between two JDK runtimes as below:
+If you change the parameter of upperbound from 9999 to 99999 in docker-compose.yml, to make the load testing much more intensively, you will find the difference increases significently between two JDK runtimes as below:
 
 ![Download Picture04](images/pic04.JPG)
