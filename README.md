@@ -58,7 +58,7 @@ Also comment out the checksum part to avoid conflict while creating the docker i
 ># echo "$JAVA_SHA256 */tmp/jdk.tgz" | sha256sum -c -; \
 >```
 
-![Download Picture01](images/pic02.JPG)
+![Download Picture02](images/pic02.JPG)
 
 ### 4. Create Docker images based on Java Enterprise Performance Pac
 >```sh
@@ -115,7 +115,22 @@ container-registry.oracle.com/java/serverjre   latest              ecd4aec3df76 
 ## Step3: Run demo
 Use Oracle Linux based Dockerfile(Offered as Open Source at Oracle) to create JDK images of Java Performance Pack.
 ### 1. Start containers
-```sh
+```
 cd Enterprise-Performance-Pack/demo
+```
+```
 docker-compose up
 ```
+### 2. Configure Grafana Dashboard
+To access the Grafana dashboard (with application data), browse to: http://your-instance-ip:3000/login. (Make sure you have added Ingress rule on your OCI demo instance to make port of 3000 being opened )
+
+Click on the Dashboards icon on the left of the Grafana interface and choose EPPDemo on the right panel:
+![Download Picture05](images/pic05.JPG)
+
+You will find throuput and latency comparison between Performance Pack and Legacy JDK8 as below.
+
+![Download Picture03](images/pic03.JPG)
+
+If you change the parameter of upperbound from 9999 to 99999 in docker-compose.yml, to make the load much heavier, you will find the difference between two JDK runtime will increass significently as below:
+
+![Download Picture04](images/pic04.JPG)
