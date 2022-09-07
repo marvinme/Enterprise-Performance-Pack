@@ -1,55 +1,9 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS0",
-      "label": "Prometheus0",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": [],
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.0.2"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
+        "datasource": "-- Grafana --",
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -66,17 +20,15 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
+  "gnetId": null,
   "graphTooltip": 0,
-  "id": null,
+  "id": 9,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -85,23 +37,11 @@
       },
       "id": 11,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Resource Utilization",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS0}"
-      },
+      "datasource": "Prometheus0",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -143,44 +83,29 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "8.2.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
-          "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "expr": "container_memory_rss{name=\"primes-openjdk\"}",
           "hide": false,
           "interval": "",
-          "legendFormat": "Throughput / JDK8",
-          "range": true,
+          "legendFormat": "Memory / OpenJDK",
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
-          "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "expr": "container_memory_rss{name=\"primes-native-g1\"}",
           "interval": "",
-          "legendFormat": "Throughput / JDKPerf",
-          "range": true,
+          "legendFormat": "Memory / Native Image",
           "refId": "A"
         }
       ],
-      "title": "Throughput - Higher is Better",
+      "title": "Memory Usage (RSS) - Lower is Better",
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS0}"
-      },
+      "datasource": "Prometheus0",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -223,15 +148,11 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "8.2.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
           "exemplar": true,
-          "expr": "(sum(rate(http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval])) - sum(rate(http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]))) / sum(rate(http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])) * 100",
+          "expr": "(sum(container_memory_rss{name=\"primes-native-g1\"}) - sum(container_memory_rss{name=\"primes-openjdk\"})) / sum(container_memory_rss{name=\"primes-openjdk\"}) * -100",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -242,10 +163,7 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -254,23 +172,11 @@
       },
       "id": 13,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Startup Times",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS0}"
-      },
+      "datasource": "Prometheus0",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -314,44 +220,29 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "8.2.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
-          "editorMode": "code",
           "exemplar": true,
-          "expr": "rate( http_server_requests_seconds_sum{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "expr": "application_started_time_seconds{job=\"primes.openjdk\"}",
           "hide": false,
           "interval": "",
-          "legendFormat": "Request Average Duration / JDK8",
-          "range": true,
+          "legendFormat": "Startup / OpenJDK",
           "refId": "Native Image G1"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
-          "editorMode": "code",
           "exemplar": true,
-          "expr": "rate( http_server_requests_seconds_sum{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "expr": "application_started_time_seconds{job=\"primes.native-g1\"}",
           "interval": "",
-          "legendFormat": "Request Average Duration / JDKPerf",
-          "range": true,
+          "legendFormat": "Startup / Native Image",
           "refId": "openjdk"
         }
       ],
-      "title": "Request Average Duration - Lower is Better",
+      "title": "Start-up Time - Lower is Better",
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS0}"
-      },
+      "datasource": "Prometheus0",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -394,31 +285,24 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "8.2.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
           "exemplar": true,
-          "expr": "(sum(rate( http_server_requests_seconds_sum{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]))-sum(rate( http_server_requests_seconds_sum{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval]))) / sum (rate( http_server_requests_seconds_sum{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval]) / rate( http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])) * 100",
+          "expr": "(sum(application_started_time_seconds{job=\"primes.native-opt\"}) - sum(application_started_time_seconds{job=\"primes.openjdk\"})) / sum(application_started_time_seconds{job=\"primes.openjdk\"}) * -100",
           "hide": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "title": "Response Time Improvement",
+      "title": "Startup Time Improvement",
       "transformations": [],
       "type": "stat"
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -427,23 +311,11 @@
       },
       "id": 15,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Application Throughput",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS0}"
-      },
+      "datasource": "Prometheus0",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -455,7 +327,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 5,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -463,7 +335,7 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineWidth": 3,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -506,58 +378,43 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "pluginVersion": "8.2.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
-          "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(http_server_requests_seconds_count{job=\"primes.oraclejdk8\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "expr": "rate(http_server_requests_seconds_count{job=\"primes.openjdk\", status=\"200\", uri=\"/primes\"}[$__interval])",
           "interval": "",
-          "legendFormat": "OracleJDK8 (req / s)",
-          "range": true,
+          "legendFormat": "OpenJDK (req / s)",
           "refId": "openjdk"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
-          "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(http_server_requests_seconds_count{job=\"primes.oraclejdkperf\", status=\"200\", uri=\"/primes\"}[$__interval])",
+          "expr": "rate(http_server_requests_seconds_count{job=\"primes.native-opt\", status=\"200\", uri=\"/primes\"}[$__interval])",
           "hide": false,
           "interval": "",
-          "legendFormat": "OracleJDKPerf (req / s)",
-          "range": true,
+          "legendFormat": "Native Image EE (req / s)",
           "refId": "Native Image EE PGO"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS0}"
-          },
-          "editorMode": "code",
+          "exemplar": true,
           "expr": "rate(http_server_requests_seconds_count{job=\"primes.graalee\", status=\"200\", uri=\"/primes\"}[$__interval])",
           "hide": false,
-          "legendFormat": "graalee",
-          "range": true,
-          "refId": "A"
+          "interval": "",
+          "legendFormat": "GraalVM EE (req / s)",
+          "refId": "GraalVM EE"
         }
       ],
-      "title": "Throughput - Higher is Better ( GraalVM vs jdkperf vs jdk8 )",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Throughput - Higher is Better",
       "type": "timeseries"
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 36,
+  "schemaVersion": 32,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -569,8 +426,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "JDK8vsPerformancePack",
-  "uid": "KhygMXiVk",
-  "version": 14,
-  "weekStart": ""
+  "title": "Optimization & High Performance - Global Bank Application",
+  "uid": "Z5_uBcp7k1",
+  "version": 128
 }
