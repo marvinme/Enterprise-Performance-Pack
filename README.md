@@ -5,15 +5,22 @@ Performance comparison demo between legacy JDK8 and Java Enterprise Performance 
 * Use same sample benchmark of Prime Numbers API service as above Demo.
 * This demo compares throughput and latency by running benchmark parallelly in two containers, which base on Java Enterprise Performance Pack and legacy JDK8.
 
+<br>
+
 ## Prerequsites
 * Oracle Java 1.8.0_341
 * Apache Maven 3.6.3
 * Docker 19.03.11
 * Docker Compose 2.5.0
+
 > **NOTE:** If you are using a different Docker Compose version, customize the version number inside docker-compose.yml accordingly
-</br>
+  
+<br>
+
 ## Demo Environment
-* OCI instance with 8 cores, 64GB of memory, Oracle Linux7.9 
+* OCI instance with 8 cores, 64GB of memory, Oracle Linux7.9
+
+<br>
 
 ## Contents
 * **[Step1: Create docker image with Java Enterprise Performance Pack](#Step1-Create-docker-image-with-Java-Enterprise-Performance-Pack)**
@@ -22,9 +29,12 @@ Performance comparison demo between legacy JDK8 and Java Enterprise Performance 
    
 * **[Step3: Run the demo](#Step3-Run-the-demo)**
 
+<br>
 
 ## Step1: Create docker image with Java Enterprise Performance Pack
 Use Oracle Linux7 based Dockerfile(Offered as Open Source at Oracle) to create Java Performance Pack image.
+
+<br>
 
 ### 1. Clone the Docker Images from Oracle
 ```
@@ -94,6 +104,8 @@ oracle/jdkperf      8                   50c69cee9af6        4 seconds ago       
 oraclelinux         7-slim              6a34bf539669        13 days ago         133MB
 ```
 
+<br>
+
 ## Step2: Build sample project
 ### 1. Clone the repository
 Move to a new directory to download the sample project.
@@ -135,6 +147,7 @@ oraclelinux                                    7-slim              6a34bf539669 
 container-registry.oracle.com/java/serverjre   latest              ecd4aec3df76        6 weeks ago          316MB
 ```
 
+<br>
 
 ## Step3: Run the demo
 ### 1. Start containers
