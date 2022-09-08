@@ -35,7 +35,7 @@ git clone https://github.com/oracle/docker-images
 cd docker-images/OracleJava/8
 ```
 
-### 2. Download the binaries of Java Enterprise performance pack for Linux x64
+### 2. Download the binaries of Java Enterprise Performance Pack for Linux x64
 
 Download the binaries available via MyOracleSupport.
 [](https://jpg-data.us.oracle.com/artifactory/re-release-local/jdk/8u345-perf/6/bundles/linux-x64/jdk-8u345-perf-linux-x64.tar.gz)
