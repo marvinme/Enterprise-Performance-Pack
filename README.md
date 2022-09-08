@@ -10,9 +10,8 @@ Performance comparison demo between legacy JDK8 and Java Enterprise Performance 
 * Apache Maven 3.6.3
 * Docker 19.03.11
 * Docker Compose 2.5.0
-</br>
-
 > **NOTE:** If you are using a different Docker Compose version, customize the version number inside docker-compose.yml accordingly
+</br>
 ## Demo Environment
 * OCI instance with 8 cores, 64GB of memory, Oracle Linux7.9 
 
