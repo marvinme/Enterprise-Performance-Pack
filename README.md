@@ -102,6 +102,10 @@ git clone https://github.com/junsuzu/Enterprise-Performance-Pack.git
 ```
 
 ### 2. Run script to build the sample project and docker images
+Navigate to https://container-registry.oracle.com/, select serverjre from Java repository, and sign in with Oracle account.
+![Download Picture06](images/pic06.JPG)
+
+![Download Picture07](images/pic07.JPG)
 
 ```
 cd Enterprise-Performance-Pack/demo
@@ -113,7 +117,7 @@ chmod +x ./*
 ./build.sh
 ```
 
-During building process, enter user name and password of your oracle account for access to oracle container registry.
+During building process, enter user name and password of your Oracle account for access to oracle container registry.
 ```
 [INFO] ------------------------------------------------------------------------
 Building Java - DONE
