@@ -8,7 +8,9 @@ Performance comparison demo between legacy JDK8 and Java Enterprise Performance 
 ## Prerequsites
 * Oracle Java 1.8.0_341
 * Apache Maven 3.6.3
-* Docker and docker-compose
+* Docker 19.03.11
+* Docker Compose 2.5.0
+(If you are using a differenct Docker Compose version, customize the version number inside docker-compose.yml accordingly)
 ## Demo Environment
 * OCI instance with 8 cores, 64GB of memory, Oracle Linux7.9 
 
@@ -152,6 +154,6 @@ You will find throughput and latency comparison between Performance Pack and leg
 
 ![Download Picture03](images/pic03.JPG)
 
-If you change the parameter of upperbound from 9999 to 99999 in docker-compose.yml, to make the load testing much more intensively, you will find the difference increases significently between two JDK runtimes as below:
+If you change the parameter of "upperBound" from 9999 to 99999 in docker-compose.yml, to make the load testing much more intensively, you will find the performance differentiated significently between two JDK runtimes as below:
 
 ![Download Picture04](images/pic04.JPG)
