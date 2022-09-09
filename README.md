@@ -144,11 +144,11 @@ container-registry.oracle.com/java/serverjre   latest              ecd4aec3df76 
 ```
 cd Enterprise-Performance-Pack/demo
 ```
-Run docker-compose command to start all necessary docker containers.
+Execute docker-compose command to start all necessary docker containers.
 ```
 docker-compose up
 ```
-After the demo, Run docker-compose command to stop all running containers:
+After the demo, execute docker-compose command to stop all running containers:
 ```
 docker-compose down
 ```
@@ -167,7 +167,7 @@ If you change the parameter of "upperBound" from 9999 to 99999 in docker-compose
 
 ![Download Picture04](images/pic04.JPG)
 
-Run docker-compose command to stop all running containers.
+Execute docker-compose command to stop all running containers.
 ```
 docker-compose down
 ```
