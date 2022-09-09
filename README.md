@@ -148,6 +148,11 @@ Run docker-compose command to start all necessary docker containers.
 ```
 docker-compose up
 ```
+After the demo, Run docker-compose command to stop all running containers:
+```
+docker-compose down
+```
+
 ### 2. Configure Grafana Dashboard
 Navigate to: http://your-instance-ip:3000/login to access the Grafana dashboard (Make sure you have added Ingress rule on your OCI demo instance to make port of 3000 being opened), and login with admin/admin for username/passowrd.(You can click "skip" to skip changing password)
 
@@ -161,3 +166,8 @@ You will find throughput and latency comparison between Performance Pack and leg
 If you change the parameter of "upperBound" from 9999 to 99999 in docker-compose.yml, to make the load testing much more intensively, you will find the performance differentiated significently between two JDK runtimes as below:
 
 ![Download Picture04](images/pic04.JPG)
+
+Run docker-compose command to stop all running containers.
+```
+docker-compose down
+```
