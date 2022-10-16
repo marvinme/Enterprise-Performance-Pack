@@ -1,7 +1,7 @@
 # Java-Enterprise-Performance-Pack-Demo
 Performance comparison demo between legacy JDK8 and Java Enterprise Performance Pack  
 ## Overview  
-* This demo is a fork from [Java Performance Comparison Dashboard Demo](https://github.com/swseighman/Java-Perf-Gafana) created by Scott Seighman and Kris Foster.
+* This demo is a fork from [Java Performance Comparison Dashboard Demo](https://github.com/swseighman/Java-Perf-Gafana) created by [swseighman](https://github.com/swseighman) and [krisfoster](https://github.com/krisfoster).
 * Use same sample benchmark of Prime Numbers API service as above Demo.
 * This demo compares throughput and latency by running benchmark parallelly in two containers, which base on Java Enterprise Performance Pack and legacy JDK8.
 
