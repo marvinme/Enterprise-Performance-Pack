@@ -3,7 +3,7 @@ Performance comparison demo between legacy JDK8 and Java Enterprise Performance 
 ## Overview  
 * This demo is a fork from [Java Performance Comparison Dashboard Demo](https://github.com/swseighman/Java-Perf-Gafana) created by [swseighman](https://github.com/swseighman) and [krisfoster](https://github.com/krisfoster).
 * Use same sample benchmark of Prime Numbers API service as above Demo.
-* This demo compares throughput and latency by running benchmark parallelly in two containers, which base on Java Enterprise Performance Pack and legacy JDK8.
+* This demo compares throughput and latency by running benchmark parallelly in two containers, which base on Java Enterprise Performance Pack and legacy JDK8 respectively.
 
 ## Prerequsites
 * Oracle Java 1.8.0_341
@@ -14,7 +14,8 @@ Performance comparison demo between legacy JDK8 and Java Enterprise Performance 
 > **NOTE:** If you are using a different Docker Compose version, customize the version number inside docker-compose.yml accordingly
 
 ## Demo Environment
-* OCI instance with 8 cores, 64GB of memory, Oracle Linux7.9
+* Case1: OCI instance with 8 cores, 64GB of memory, Oracle Linux7.9
+* Case2: Ubuntu20.04.4 on Windows10, core i7, 4cores, 16GB of memory
 
 ## Contents
 * **[Step1: Create docker image with Java Enterprise Performance Pack](#Step1-Create-docker-image-with-Java-Enterprise-Performance-Pack)**
